@@ -1,0 +1,75 @@
+<div class="container">
+   <div class="first-block card">
+      <div class="first_left-block">
+         <div class="first_left-block_city">
+            <h2>{{startData.name}}</h2>
+         </div>
+         <div class="first_left-block_date">
+            <h4>{{startDateTime|date:('HH:MM / dd MMMM')}}</h4>
+         </div>
+         <div class="first_left-block_other">
+            <p>
+               <span>
+                  {{startData?.main?.temp | number:'1.0-0'}}&deg;
+               </span>
+               <span>
+                  {{startData?.weather[0]?.description| titlecase}}
+               </span>
+               <span class="none">
+                  Chance
+                  of rain:{{startData}}
+               </span>
+            </p>
+         </div>
+      </div>
+      <div class="first_right-img-block card ">
+         <img src="https://openweathermap.org/img/wn/{{startData.weather[0]['icon']}}@2x.png" alt="">
+      </div>
+   </div>
+   <div class="second-block card">
+      <div class="second_top-block">
+         <span>
+            <p>Weather today:&ensp;</p>
+         </span>
+         <div>{{startData.name}}</div>
+      </div>
+      <div class="second_bottom-block">
+         <div class="second_bottom-block_left">
+            <p>Feels like:&ensp;</p>
+            <span>{{startData?.main?.feels_like | number:'1.0-0'}}&deg;</span>
+         </div>
+         <div class="second_bottom-block_right none">
+            <span class="main_img">
+               <img src="https://cdn1.iconfinder.com/data/icons/weather-19/32/sunrise-512.png" alt="sunWakeUp">
+            </span>
+            <span>
+               4:46
+            </span>
+            <span class="main_img">
+               <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrx9z_RA-nXo5iQDEwvPE_kiLh0EcINBGaMw&usqp=CAU"
+                  alt="sunSetDown">
+            </span>
+            <span>
+               21:46
+            </span>
+         </div>
+      </div>
+   </div>
+   <div class="third-block card">
+      <div class="third_left-block">
+         <ul>
+            <li>Humidity:&ensp;{{startData?.main?.humidity}}%</li>
+            <li>Preasure:&ensp;{{startData?.main?.pressure}} hPa</li>
+            <li>Visible:&ensp;{{startData?.visibility}} meter </li>
+         </ul>
+      </div>
+      <div class="third_right-block">
+         <ul>
+            <li>Wind:&ensp;{{startData?.wind?.speed}} meter/sec</li>
+            <li>IF-index:&ensp;</li>
+            <li>Moon phase:&ensp;</li>
+         </ul>
+      </div>
+   </div>
+</div>

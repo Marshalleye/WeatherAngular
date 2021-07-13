@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "weatherAngular"
+    }
+  },
+  "defaultProject": "weatherAngular",
+  "cli": {
+    "analytics": "d98ba24b-4dd0-41a8-be36-040117a00c4b"
+  }
 }
