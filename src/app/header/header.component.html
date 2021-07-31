@@ -1,16 +1,13 @@
-<div class="navbar">
-   <h1>Angular Weather App</h1>
-   <div class="input-button"><input type="text" [(ngModel)]="inputServic.city" placeholder="Search city...">
-      <button class=" nav-img" (click)="setDate()">
-         <img src="https://image.flaticon.com/icons/png/512/709/709592.png" alt="">
-      </button>
-   </div>
+<mat-toolbar color="primary" class="navbar">
+   <span class="header-text">Angular Weather App</span>
+
+
    <div class="header_togle-block">
       <div class="header_temperature">
          <span class="header_img">
             <img src="https://image.flaticon.com/icons/png/512/15/15752.png" alt="">
          </span>
-         <button class="btn">S\D</button>
+         <mat-slide-toggle [(ngModel)]="inputServic.temperatureMode"></mat-slide-toggle>
          <span class="header_img">
             <img src="https://image.flaticon.com/icons/png/512/4644/4644656.png" alt="">
          </span>
@@ -19,10 +16,10 @@
          <span class="header_img">
             <img src="https://image.flaticon.com/icons/png/128/2698/2698194.png" alt="">
          </span>
-         <button class="btn">S\D</button>
+         <mat-slide-toggle [(ngModel)]="themeMode"></mat-slide-toggle>
          <span class="header_img">
             <img src="https://image.flaticon.com/icons/png/128/2955/2955890.png" alt="">
          </span>
       </div>
    </div>
-</div>
+</mat-toolbar>

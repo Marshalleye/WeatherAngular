@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,500;0,600;1,400;1,500&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Arimo", sans-serif;
+  font-size: 16px;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.4rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
@@ -130,15 +130,14 @@ hr {
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
   opacity: 0.9;
-  margin-bottom: 1rem;
-  background: #dc3545;
-  color: #fff;
+  //  margin-bottom: 1rem;
+  //  color: #fff;
 
   ul {
     display: flex;
@@ -155,4 +154,13 @@ hr {
     padding: 0.45rem;
     margin: 0 0.25rem;
   }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
