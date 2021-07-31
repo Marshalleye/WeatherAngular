@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { weatherData } from './main/main.component';
+import { Component } from '@angular/core';
+import { weatherData } from './servises/servis-input.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { weatherData } from './main/main.component';
 export class AppComponent {
   newData: weatherData;
 
-  updateWeather($event) {
-    this.newData = $event;
+  updateWeather(event) {
+    this.newData = event;
   }
 }

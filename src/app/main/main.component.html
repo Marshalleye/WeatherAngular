@@ -1,75 +1,165 @@
 <div class="container">
-   <div class="first-block card">
-      <div class="first_left-block">
-         <div class="first_left-block_city">
-            <h2>{{startData.name}}</h2>
+   <div class="search-block">
+      <mat-form-field class="header__input" appearance="outline">
+         <mat-label>City</mat-label>
+         <input matInput type=" search" [(ngModel)]="inputService.city" placeholder="Ex. San Francisco">
+      </mat-form-field>
+      <button mat-flat-button color='primary' (click)="inputService.makeNowDate()">Search</button>
+   </div>
+   <mat-tab-group>
+      <mat-tab label="Weather now">
+
+         <div class="first-block card">
+            <div class="first_left-block">
+               <div class="first_left-block_city">
+                  <h2>{{inputService.startData.name}}</h2>
+               </div>
+               <div class="first_left-block_date">
+                  <h4>{{inputService.DateTime|date:('HH:MM / dd MMMM')}}</h4>
+               </div>
+               <div class="first_left-block_other">
+                  <p>
+                     <span>
+                        {{inputService.startData?.main?.temp | number:'1.0-0'}} {{inputService.temperatureMode?
+                        '&#8457;'
+                        :'&#8451;' }};
+                     </span>
+                     <span>
+                        {{inputService.startData?.weather[0]?.description| titlecase}}
+                     </span>
+                     <span class="none">
+                        Chance
+                        of rain:{{inputService.startData}}
+                     </span>
+                  </p>
+               </div>
+            </div>
+            <div class="first_right-img-block card ">
+               <img src="https://openweathermap.org/img/wn/{{inputService.startData.weather[0]['icon']}}@2x.png" alt="">
+            </div>
          </div>
-         <div class="first_left-block_date">
-            <h4>{{startDateTime|date:('HH:MM / dd MMMM')}}</h4>
-         </div>
-         <div class="first_left-block_other">
-            <p>
+         <div class="second-block card">
+            <div class="second_top-block">
                <span>
-                  {{startData?.main?.temp | number:'1.0-0'}}&deg;
+                  <p>Weather today:&ensp;</p>
                </span>
-               <span>
-                  {{startData?.weather[0]?.description| titlecase}}
-               </span>
-               <span class="none">
-                  Chance
-                  of rain:{{startData}}
-               </span>
-            </p>
+               <div>{{inputService.startData.name}}</div>
+            </div>
+            <div class="second_bottom-block">
+               <div class="second_bottom-block_left">
+                  <p>Feels like:&ensp;</p>
+                  <span>{{inputService.startData?.main?.feels_like | number:'1.0-0'}} {{inputService.temperatureMode?
+                     '&#8457;'
+                     :'&#8451;' }}</span>
+               </div>
+               <div class="second_bottom-block_right none">
+                  <span class="main_img">
+                     <img src="https://cdn1.iconfinder.com/data/icons/weather-19/32/sunrise-512.png" alt="sunWakeUp">
+                  </span>
+                  <span>
+                     4:46
+                  </span>
+                  <span class="main_img">
+                     <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrx9z_RA-nXo5iQDEwvPE_kiLh0EcINBGaMw&usqp=CAU"
+                        alt="sunSetDown">
+                  </span>
+                  <span>
+                     21:46
+                  </span>
+               </div>
+            </div>
          </div>
-      </div>
-      <div class="first_right-img-block card ">
-         <img src="https://openweathermap.org/img/wn/{{startData.weather[0]['icon']}}@2x.png" alt="">
-      </div>
-   </div>
-   <div class="second-block card">
-      <div class="second_top-block">
-         <span>
-            <p>Weather today:&ensp;</p>
-         </span>
-         <div>{{startData.name}}</div>
-      </div>
-      <div class="second_bottom-block">
-         <div class="second_bottom-block_left">
-            <p>Feels like:&ensp;</p>
-            <span>{{startData?.main?.feels_like | number:'1.0-0'}}&deg;</span>
+         <div class="third-block card">
+            <div class="third_left-block">
+               <ul>
+                  <li>Humidity:&ensp;{{inputService.startData?.main?.humidity}}%</li>
+                  <li>Preasure:&ensp;{{inputService.startData?.main?.pressure}} hPa</li>
+                  <li>Visible:&ensp;{{inputService.startData?.visibility}} meter </li>
+               </ul>
+            </div>
+            <div class="third_right-block">
+               <ul>
+                  <li>Wind:&ensp;{{inputService.startData?.wind?.speed}} {{inputService.temperatureMode?
+                     'miles/hour'
+                     : 'meter/sec'}}</li>
+                  <li>IF-index:&ensp;</li>
+                  <li>Moon phase:&ensp;</li>
+               </ul>
+            </div>
          </div>
-         <div class="second_bottom-block_right none">
-            <span class="main_img">
-               <img src="https://cdn1.iconfinder.com/data/icons/weather-19/32/sunrise-512.png" alt="sunWakeUp">
-            </span>
-            <span>
-               4:46
-            </span>
-            <span class="main_img">
-               <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrx9z_RA-nXo5iQDEwvPE_kiLh0EcINBGaMw&usqp=CAU"
-                  alt="sunSetDown">
-            </span>
-            <span>
-               21:46
-            </span>
+      </mat-tab>
+      <mat-tab label="Two day">
+         <button mat-flat-button color='primary' (click)="dailyServise.makeHourlyDate()">Search</button>
+         <div>
+            <ul>
+               <li *ngFor="let date of dailyServise.hourlyData.hourly; let i = index">
+                  <strong>{{i+1}}</strong>
+                  <h5>Temperature</h5> {{date.temp}}
+               </li>
+            </ul>
          </div>
-      </div>
-   </div>
-   <div class="third-block card">
-      <div class="third_left-block">
-         <ul>
-            <li>Humidity:&ensp;{{startData?.main?.humidity}}%</li>
-            <li>Preasure:&ensp;{{startData?.main?.pressure}} hPa</li>
-            <li>Visible:&ensp;{{startData?.visibility}} meter </li>
-         </ul>
-      </div>
-      <div class="third_right-block">
-         <ul>
-            <li>Wind:&ensp;{{startData?.wind?.speed}} meter/sec</li>
-            <li>IF-index:&ensp;</li>
-            <li>Moon phase:&ensp;</li>
-         </ul>
-      </div>
-   </div>
+
+      </mat-tab>
+      <mat-tab label="7 day">
+         <button mat-flat-button color='primary' (click)="dailyServise.makeDailyDate()">Search</button>
+         <button mat-flat-button color='primary' (click)="conver.convertCity()">Conver</button>
+         <div>
+            <ul *ngFor="let date of dailyServise.dailyData.daily; let i = index" class="card">
+               <li>
+                  <h2>Day: {{dailyServise.dailyData.minutely[0].dt| date:'fullDate'}}</h2>
+                  <h5>Morning temperature</h5> {{date.temp.morn }}
+                  <h5>Day temperature</h5> {{date.temp.day }}
+                  <h5>Evening temperature</h5> {{date.temp.eve }}
+                  <h5>Night temperature</h5> {{date.temp.night }}
+                  <h5>Min daily temperature</h5> {{date.temp.min }}
+                  <h5>Max daily temperature</h5> {{date.temp.max }}
+               </li>
+               <li>
+                  <h5>Sunrise time, Unix, UTC</h5> {{date.sunrise | date: 'medium' }}
+                  <h5>Sunset time, Unix, UTC</h5> {{date.sunset | date: 'medium'}}
+               </li>
+               <li>
+                  <h5>Feels-like Morning temperature</h5> {{date.feels_like.morn }}
+                  <h5>Feels-like Day temperature</h5> {{date.feels_like.day }}
+                  <h5>Feels-like Evening temperature</h5> {{date.feels_like.eve }}
+                  <h5>Feels-like Night temperature</h5> {{date.feels_like.night }}
+               </li>
+               <li>
+                  <h5> Atmospheric pressure on the sea level, hPa</h5> {{date.pressure }}
+                  <h5> Humidity, %</h5> {{date.humidity }}
+                  <h5> Wind speed. {{inputService.temperatureMode?
+                     'miles/hour'
+                     : 'meter/sec'}}</h5> {{date.wind_speed }}
+                  <h5> Cloudiness, %</h5> {{date.clouds }}
+                  <h5> The maximum value of UV index for the day</h5> {{date.uvi }}
+                  <h5> Cloudiness, %</h5> {{date.clouds }}
+                  <h5> The maximum value of UV index for the day</h5> {{date.uvi }}
+                  <h5> Cloudiness, %</h5> {{date.clouds }}
+               </li>
+               <li>
+                  <div class="first_right-img-block card ">
+                     <img src="https://openweathermap.org/img/wn/{{date.weather[0]['icon']}}@2x.png" alt="">
+                  </div>
+               </li>
+               <li>
+                  <mat-expansion-panel (opened)="dailyServise.panelOpenState = true"
+                     (closed)="dailyServise.panelOpenState = false">
+                     <mat-expansion-panel-header>
+                        <mat-panel-title>
+                           Self aware panel
+                        </mat-panel-title>
+                        <mat-panel-description>
+                           Currently I am {{dailyServise.panelOpenState ? 'open' : 'closed'}}
+                        </mat-panel-description>
+                     </mat-expansion-panel-header>
+                     <p>{{date.weather.description}}</p>
+                  </mat-expansion-panel>
+               </li>
+            </ul>
+         </div>
+
+      </mat-tab>
+   </mat-tab-group>
+
 </div>

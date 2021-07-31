@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Api } from '../servises/servis-static.service';
+import { Api } from '../servises/interface';
 
 @Component({
   selector: 'app-map',
@@ -14,8 +13,6 @@ export class MapComponent implements OnInit {
     base: `https://maps.googleapis.com/maps/api/js?`,
   };
   title = 'My first AGM project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
   constructor(private http: HttpClient) {}
   ngOnInit() {}
 }

@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { weatherData } from '../main/main.component';
+import { Component, OnInit } from '@angular/core';
 import { ServisInputService } from '../servises/servis-input.service';
 
 @Component({
@@ -8,15 +7,8 @@ import { ServisInputService } from '../servises/servis-input.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() public newCity: EventEmitter<weatherData> =
-    new EventEmitter<weatherData>();
+  themeMode = false;
   constructor(public inputServic: ServisInputService) {}
 
   ngOnInit(): void {}
-
-  setDate() {
-    this.inputServic
-      .makeInputDate()
-      .subscribe((date: weatherData) => this.newCity.emit(date));
-  }
 }
